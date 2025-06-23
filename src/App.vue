@@ -1,15 +1,22 @@
 <script setup>
-import Home from './pages/Home.vue';
+import MainLayout from './layouts/MainLayout.vue'
 </script>
 
 <template>
-  <Suspense>
-    <template #default>
-      <Home />
-    </template>
-
-    <template #fallback>
-      <div>Loading...</div>
-    </template>
-  </Suspense>
+  <MainLayout />
 </template>
+
+<style>
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+</style>
