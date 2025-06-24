@@ -1,12 +1,20 @@
-import { createApp } from 'vue';
-import { StoryblokVue, apiPlugin } from '@storyblok/vue';
-import App from './App.vue';
-import Grid from './components/Grid.vue';
-import Page from './components/Page.vue';
-import Teaser from './components/Teaser.vue';
-import Feature from './components/Feature.vue';
+import { createApp } from 'vue'
+import { StoryblokVue, apiPlugin } from '@storyblok/vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from './router'
+import pinia from './stores'
+import './assets/styles/main.css'
+import App from './App.vue'
 
-const app = createApp(App);
+const app = createApp(App)
+
+// Register Element Plus icons
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 app.use(StoryblokVue, {
   accessToken: 'd6IKUtAUDiKyAhpJtrLFcwtt',
@@ -14,11 +22,10 @@ app.use(StoryblokVue, {
   apiOptions: {
     region: ''
   }
-});
+})
 
-app.component('Grid', Grid);
-app.component('Page', Page);
-app.component('Teaser', Teaser);
-app.component('Feature', Feature);
+app.use(ElementPlus)
+app.use(router)
+app.use(pinia)
 
-app.mount('#app');
+app.mount('#app')
